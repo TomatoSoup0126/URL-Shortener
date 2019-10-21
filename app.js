@@ -12,6 +12,14 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+app.get('/:shortURL', (req, res) => {
+  res.redirect(``)
+})
+
+app.post('/', (req, res) => {
+  res.render('index', shortenURL)
+})
+
 
 app.listen(port, () => {
   console.log(`Express app listening on port ${port}.`)
