@@ -54,25 +54,31 @@ app.get('/:shortenUrl', (req, res) => {
 app.post('/', (req, res) => {
   const hostName = req.headers.origin
   const originalUrl = req.body.inputURL
-  Url.findOne({ originalUrl: originalUrl })
-    //查詢原始網址 若已存在直接輸出縮網址
-    .then(url => {
-      if (url) {
-        return res.render('index', { url: url, hostName })
-      } else {
-        //不存在資料庫 轉成縮網址後輸出
-        const shortenUrl = randomstring.generate(5)
-        const url = new Url({
-          originalUrl: originalUrl,
-          shortenUrl: shortenUrl
-        })
 
-        url.save(err => {
-          if (err) return console.error(err)
+  if (!originalUrl) {
+    const errorMessage = "你沒填寫要縮的網址喔！"
+    return res.render('index', { errorMessage })
+  } else {
+    Url.findOne({ originalUrl: originalUrl })
+      //查詢原始網址 若已存在直接輸出縮網址
+      .then(url => {
+        if (url) {
           return res.render('index', { url: url, hostName })
-        })
-      }
-    })
+        } else {
+          //不存在資料庫 轉成縮網址後輸出
+          const shortenUrl = randomstring.generate(5)
+          const url = new Url({
+            originalUrl: originalUrl,
+            shortenUrl: shortenUrl
+          })
+
+          url.save(err => {
+            if (err) return console.error(err)
+            return res.render('index', { url: url, hostName })
+          })
+        }
+      })
+  }
 })
 
 
