@@ -14,7 +14,8 @@ router.get('/:shortenUrl', (req, res) => {
   Url.findOne({ shortenUrl: shortenUrl })
     .then(url => {
       if (!url) {
-        return res.send('not find')
+        const notFindMessage = "似乎出現無效的縮網址呢..."
+        return res.render('index', { notFindMessage })
       } else {
         res.redirect(url.originalUrl)
       }
