@@ -3,6 +3,11 @@ const exphbs = require('express-handlebars')
 const app = express()
 const port = 3000
 
+const Url = require('./models/url')
+
+const mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/shortenerURL')
+
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
