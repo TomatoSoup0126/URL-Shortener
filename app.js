@@ -1,5 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 
@@ -23,16 +24,30 @@ db.once('open', () => {
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+app.use(bodyParser.urlencoded({ extended: true }))
+
 app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.get('/:shortURL', (req, res) => {
-  res.redirect(``)
+app.get('/:shortenUrl', (req, res) => {
+  const shortenUrl = req.params.shortenUrl
+  Url.findOne({ shortenUrl: shortenUrl })
+    .then(url => {
+      if (!url) {
+        return res.send('not find')
+      } else {
+        res.redirect(url.originalUrl)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+
 })
 
 app.post('/', (req, res) => {
-  res.render('index', shortenURL)
+  res.render('index', shortenUrl)
 })
 
 
