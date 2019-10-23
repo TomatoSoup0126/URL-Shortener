@@ -9,7 +9,7 @@ AC練習專案
 
 
 ### 直接使用
-- 已部署至Heroku，可以直接使用 [點我](https://safe-chamber-93031.herokuapp.com/)
+- 已部署至Heroku，可以直接使用 [點我](https://tomato-url.herokuapp.com/)
 ```
 備有三組預設轉址歡迎測試
 https://www.google.com.tw/
