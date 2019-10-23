@@ -27,6 +27,8 @@ app.set('view engine', 'handlebars')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
+
+//路由設定
 app.get('/', (req, res) => {
   res.render('index')
 })
@@ -50,14 +52,15 @@ app.get('/:shortenUrl', (req, res) => {
 
 //縮網址路由
 app.post('/', (req, res) => {
+  const hostName = req.headers.origin
   const originalUrl = req.body.inputURL
   Url.findOne({ originalUrl: originalUrl })
-    //已轉換過直接輸出
+    //查詢原始網址 若已存在直接輸出縮網址
     .then(url => {
       if (url) {
-        return res.send(`${url.shortenUrl}`)
+        return res.render('index', { url: url, hostName })
       } else {
-        //沒轉換過再轉換
+        //不存在資料庫 轉成縮網址後輸出
         const shortenUrl = randomstring.generate(5)
         const url = new Url({
           originalUrl: originalUrl,
@@ -66,7 +69,7 @@ app.post('/', (req, res) => {
 
         url.save(err => {
           if (err) return console.error(err)
-          return res.render('index', { url: url })
+          return res.render('index', { url: url, hostName })
         })
       }
     })

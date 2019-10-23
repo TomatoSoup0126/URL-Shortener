@@ -13,8 +13,17 @@
     </form>
 
     {{#if url}}
-    <p>{{url.originalUrl}}</p>
-    <p>{{url.shortenUrl}}</p>
+    <div class="alert alert-secondary mt-5" role="alert">
+      <h6>成功轉換！縮網址為：</h6>
+      <div class="d-flex align-items-center justify-content-center">
+        <a class="text-decoration-none" href="{{hostName}}/{{url.shortenUrl}}">{{hostName}}/{{url.shortenUrl}}</a>
+
+        <button class="btn btn-outline-dark ml-2"><i class="far fa-copy"></i></button>
+      </div>
+
+
+
+    </div>
     {{/if}}
   </div>
 </div>
