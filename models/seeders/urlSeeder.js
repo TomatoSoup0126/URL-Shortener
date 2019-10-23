@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Url = require('../url')
 const urlList = require('./url.json')
 
-mongoose.connect('mongodb://localhost/shortenerURL', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.PORT || 'mongodb://localhost/shortenerURL', { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
 

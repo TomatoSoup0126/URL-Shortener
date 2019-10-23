@@ -8,7 +8,8 @@ const port = 3000
 const Url = require('./models/url')
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/shortenerURL', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shortenerURL', { useNewUrlParser: true, useUnifiedTopology: true })
+
 
 
 
@@ -31,6 +32,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/', require('./routes/home'))
 
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Express app listening on port ${port}.`)
 })
