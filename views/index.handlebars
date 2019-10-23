@@ -4,12 +4,17 @@
     <h1>URL Shortener</h1>
     <div class="display-1 mt-3"><i class=" fas fa-link"></i></div>
 
-    <form action="POST" class="mt-4">
+    <form action="/" method="POST" class="mt-4">
       <div class="form-group">
-        <input type="url" class="form-control" id="inputURL" aria-describedby="inputURL"
+        <input type="url" class="form-control" name="inputURL" aria-describedby="inputURL"
           placeholder="http://www.example.com">
       </div>
       <button type="submit" class="btn btn-outline-secondary mt-3">Shorten!</button>
     </form>
+
+    {{#if url}}
+    <p>{{url.originalUrl}}</p>
+    <p>{{url.shortenUrl}}</p>
+    {{/if}}
   </div>
 </div>

@@ -1,6 +1,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
+const randomstring = require("randomstring")
 const app = express()
 const port = 3000
 
@@ -30,6 +31,7 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+//轉址路由
 app.get('/:shortenUrl', (req, res) => {
   const shortenUrl = req.params.shortenUrl
   Url.findOne({ shortenUrl: shortenUrl })
@@ -46,9 +48,30 @@ app.get('/:shortenUrl', (req, res) => {
 
 })
 
+//縮網址路由
 app.post('/', (req, res) => {
-  res.render('index', shortenUrl)
+  const originalUrl = req.body.inputURL
+  Url.findOne({ originalUrl: originalUrl })
+    //已轉換過直接輸出
+    .then(url => {
+      if (url) {
+        return res.send(`${url.shortenUrl}`)
+      } else {
+        //沒轉換過再轉換
+        const shortenUrl = randomstring.generate(5)
+        const url = new Url({
+          originalUrl: originalUrl,
+          shortenUrl: shortenUrl
+        })
+
+        url.save(err => {
+          if (err) return console.error(err)
+          return res.render('index', { url: url })
+        })
+      }
+    })
 })
+
 
 
 app.listen(port, () => {
