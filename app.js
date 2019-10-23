@@ -1,11 +1,11 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
-const randomstring = require("randomstring")
+
 const app = express()
 const port = 3000
 
-const Url = require('./models/url')
+
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shortenerURL', { useNewUrlParser: true, useUnifiedTopology: true })
