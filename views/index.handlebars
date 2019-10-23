@@ -18,11 +18,12 @@
       <div class="d-flex align-items-center justify-content-center">
         <a class="text-decoration-none" href="{{hostName}}/{{url.shortenUrl}}">{{hostName}}/{{url.shortenUrl}}</a>
 
-        <button class="btn btn-outline-dark ml-2"><i class="far fa-copy"></i></button>
+        <button class="btn btn-outline-dark ml-2" id="copy" data-clipboard-text="{{hostName}}/{{url.shortenUrl}}"><i
+            class="far fa-copy"></i></button>
+        <script>
+          new Clipboard("#copy");
+        </script>
       </div>
-
-
-
     </div>
     {{/if}}
   </div>
