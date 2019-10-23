@@ -1,0 +1,16 @@
+{
+  "results": [
+    {
+      "originalUrl": "https://www.google.com.tw/",
+      "shortenUrl": "Goo12"
+    },
+    {
+      "originalUrl": "http://facebook.com/",
+      "shortenUrl": "FB123"
+    },
+    {
+      "originalUrl": "https: //medium.com",
+      "shortenUrl": "MeD45"
+    }
+  ]
+}
