@@ -32,6 +32,7 @@ router.post('/', (req, res) => {
   const originalUrl = req.body.inputURL
 
   if (!originalUrl) {
+    //防空白驗證
     const errorMessage = "你沒填寫要縮的網址喔！"
     return res.render('index', { errorMessage })
   } else {
