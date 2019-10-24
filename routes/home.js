@@ -3,7 +3,7 @@ const router = express.Router()
 const randomstring = require("randomstring")
 const Url = require('../models/url')
 
-//路由設定
+//首頁路由
 router.get('/', (req, res) => {
   res.render('index')
 })

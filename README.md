@@ -13,13 +13,13 @@ AC練習專案
 ```
 備有三組預設轉址歡迎測試
 https://www.google.com.tw/
-Goo12
+[https://tomato-url.herokuapp.com/Goo12](https://tomato-url.herokuapp.com/Goo12)
 
 http://facebook.com/
-FB123
+[https://tomato-url.herokuapp.com/FB123](https://tomato-url.herokuapp.com/FB123)
 
 https://medium.com
-MeD45
+[https://tomato-url.herokuapp.com/MeD45](https://tomato-url.herokuapp.com/MeD45)
 ```
 
 ### 環境建置
